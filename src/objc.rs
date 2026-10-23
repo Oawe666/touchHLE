@@ -119,6 +119,16 @@ const CONSTANTS: ConstantExports = &[
     ("__objc_empty_cache", HostConstant::NullPtr),
 ];
 
+/// Objective-C ARC runtime entry point.
+fn objc_release(env: &mut Environment, object: id) {
+    release(env, object);
+}
+
+/// Objective-C ARC runtime entry point.
+fn objc_retain(env: &mut Environment, object: id) -> id {
+    retain(env, object)
+}
+
 /// Block support is iOS 4+, but it seems like Block Runtime Helpers
 /// could still be called on even if minimal iOS version is set to 3.x?
 ///
@@ -151,5 +161,7 @@ const FUNCTIONS: FunctionExports = &[
     export_c_func!(objc_sync_exit(_)),
     export_c_func!(object_getClass(_)),
     export_c_func!(sel_registerName(_)),
+    export_c_func!(objc_release(_)),
+    export_c_func!(objc_retain(_)),
     export_c_func!(_Block_object_dispose(_, _)),
 ];
