@@ -101,8 +101,7 @@ jobs:
       shell: bash # windows :)
       run: |
         mkdir -p "$GITHUB_WORKSPACE"
-        git clone https://github.com/touchHLE/touchHLE "$GITHUB_WORKSPACE"
-        cd "$GITHUB_WORKSPACE"
+        git clone "https://github.com/$GITHUB_REPOSITORY.git" "$GITHUB_WORKSPACE"
         git fetch origin "$GITHUB_REF"
         git checkout "$GITHUB_SHA" # avoid race condition if branch/tag changes
     - name: Check formatting
@@ -199,8 +198,7 @@ jobs:
       shell: bash # windows :)
       run: |
         mkdir -p "$GITHUB_WORKSPACE"
-        git clone https://github.com/touchHLE/touchHLE "$GITHUB_WORKSPACE"
-        cd "$GITHUB_WORKSPACE"
+        git clone "https://github.com/$GITHUB_REPOSITORY.git" "$GITHUB_WORKSPACE"
         git fetch origin "$GITHUB_REF"
         git checkout "$GITHUB_SHA" # avoid race condition if branch/tag changes
     # Apparently the Windows runner already has clang-format? That's nice.
